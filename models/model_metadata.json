@@ -1,0 +1,38 @@
+{
+    "model_type": "Ridge Regression",
+    "best_params": {
+        "alpha": 1.0
+    },
+    "training_date": "2026-01-13 13:39:29",
+    "train_samples": 1069,
+    "test_samples": 268,
+    "features": [
+        "age",
+        "sex",
+        "bmi",
+        "children",
+        "smoker",
+        "age_bmi_interaction",
+        "smoker_bmi_interaction",
+        "is_smoker",
+        "is_obese",
+        "smoker_obese_risk",
+        "has_children",
+        "region_northwest",
+        "region_southeast",
+        "region_southwest",
+        "age_group_senior",
+        "age_group_young",
+        "bmi_category_obese",
+        "bmi_category_overweight",
+        "bmi_category_underweight"
+    ],
+    "num_features": 19,
+    "performance": {
+        "train_r2": 0.8568372620061198,
+        "test_r2": 0.9090285882076847,
+        "test_rmse": 4088.5876010204192,
+        "test_mae": 2235.577466025987,
+        "cv_best_score": 0.8536831608264827
+    }
+}

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Cost Prediction System</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <!--Navigation Tabs -->
+    <nav class="tabs-nav">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">⚕️</span>
+                <span class="logo-text">HealthCost AI</span>
+            </div>
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="home">
+                    <span class="tab-icon">🏠</span>
+                    <span>Home</span>
+                </button>
+                <button class="tab-btn" data-tab="predict">
+                    <span class="tab-icon">🧠</span>
+                    <span>Predict</span>
+                </button>
+                <button class="tab-btn" data-tab="results" id="results-tab-btn" style="display: none;">
+                    <span class="tab-icon">📊</span>
+                    <span>Results</span>
+                </button>
+                <button class="tab-btn" data-tab="about">
+                    <span class="tab-icon">ℹ️</span>
+                    <span>About</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Home Tab -->
+        <div class="tab-content active" id="home-tab">
+            <div class="hero-section">
+                <h1><span style="filter: none; -webkit-text-fill-color: initial;">💊</span> Healthcare Cost Prediction System</h1>
+                <p class="hero-subtitle">Insurance Cost Estimation with Risk Analysis</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">85%</div>
+                        <div class="stat-label">Prediction Accuracy</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">1,337</div>
+                        <div class="stat-label">Training Samples</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$4,509</div>
+                        <div class="stat-label">Average RMSE</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">13</div>
+                        <div class="stat-label">Features</div>
+                    </div>
+                </div>
+
+                <div class="welcome-section">
+                    <h2>Welcome to Our Healthcare Cost Prediction Platform</h2>
+                    <p>Get instant, accurate predictions for medical insurance costs using advanced machine learning algorithms.</p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🎯</div>
+                            <h3>Accurate Predictions</h3>
+                            <p>85% accuracy with Ridge Regression model trained on real healthcare data</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">⚡</div>
+                            <h3>Instant Results</h3>
+                            <p>Get your cost estimate in less than a second with confidence intervals</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔍</div>
+                            <h3>Risk Analysis</h3>
+                            <p>Comprehensive risk factor identification and personalized recommendations</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📈</div>
+                            <h3>Data-Driven</h3>
+                            <p>Built on 1,337 real insurance records with 13 engineered features</p>
+                        </div>
+                    </div>
+
+                    <button class="cta-button" onclick="switchTab('predict')">
+                        Start Prediction →
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Predict Tab -->
+        <div class="tab-content" id="predict-tab">
+            <div class="prediction-card">
+                <h2><span style="filter: none; -webkit-text-fill-color: initial;">📋</span> Patient Information</h2>
+                <p class="card-subtitle">Enter patient details to predict insurance costs</p>
+                
+                <form id="predictionForm">
+                    <!-- Demographics Section -->
+                    <div class="form-section">
+                        <h3>Demographics</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="age">Age <span class="required">*</span></label>
+                                <input type="number" id="age" name="age" min="18" max="100" required placeholder="e.g., 35">
+                                <span class="input-hint">18-100 years</span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="sex">Sex <span class="required">*</span></label>
+                                <select id="sex" name="sex" required>
+                                    <option value="">Select...</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="region">Region <span class="required">*</span></label>
+                                <select id="region" name="region" required>
+                                    <option value="">Select...</option>
+                                    <option value="northeast">Northeast</option>
+                                    <option value="northwest">Northwest</option>
+                                    <option value="southeast">Southeast</option>
+                                    <option value="southwest">Southwest</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Health Information Section -->
+                    <div class="form-section">
+                        <h3>Health Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="bmi">BMI (Body Mass Index) <span class="required">*</span></label>
+                                <input type="number" id="bmi" name="bmi" min="10" max="60" step="0.1" required placeholder="e.g., 28.5">
+                                <span class="input-hint">10-60 kg/m²</span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="smoker">Smoking Status <span class="required">*</span></label>
+                                <select id="smoker" name="smoker" required>
+                                    <option value="">Select...</option>
+                                    <option value="yes">Yes, I smoke</option>
+                                    <option value="no">No, I don't smoke</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Family Information Section -->
+                    <div class="form-section">
+                        <h3>Family Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="children">Number of Children <span class="required">*</span></label>
+                                <input type="number" id="children" name="children" min="0" max="5" required placeholder="e.g., 2">
+                                <span class="input-hint">0-5 dependents</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="predictButton">
+                        <span class="button-text">Predict Cost</span>
+                        <span class="button-loader" style="display: none;">
+                            <span class="loader-spinner"></span>
+                            <span>Analyzing...</span>
+                        </span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Results Tab -->
+        <div class="tab-content" id="results-tab">
+            <div class="results-placeholder" id="results-placeholder">
+                <div class="placeholder-icon">📊</div>
+                <h2>No Results Yet</h2>
+                <p>Make a prediction first to see the results here</p>
+                <button class="cta-button" onclick="switchTab('predict')">
+                    Go to Prediction Form
+                </button>
+            </div>
+            
+            <!-- Results content (hidden initially, shown after prediction) -->
+            <div id="results-content" style="display: none;">
+                <div class="results-card">
+                    <h2>Cost Prediction Results</h2>
+                    
+                    <div class="main-result">
+                        <div class="result-label">Predicted Annual Cost</div>
+                        <div class="result-value" id="predictedCost">$0.00</div>
+                    </div>
+
+                    <div class="risk-badge-container">
+                        <div class="risk-badge" id="riskBadge">
+                            <span class="risk-label">Risk Category</span>
+                            <span class="risk-value" id="riskCategory">-</span>
+                        </div>
+                    </div>
+
+                    <div class="details-section">
+                        <h3>Risk Factors</h3>
+                        <div id="riskFactors" class="risk-factors-list">
+                            <!-- Risk factors will be inserted here -->
+                        </div>
+                    </div>
+
+                    <div class="details-section">
+                        <h3>Recommendations</h3>
+                        <div id="recommendations" class="recommendations-list">
+                            <!-- Recommendations will be inserted here -->
+                        </div>
+                    </div>
+
+                    <div class="details-section">
+                        <h3>Input Summary</h3>
+                        <div id="inputSummary" class="input-summary">
+                            <!-- Input summary will be inserted here -->
+                        </div>
+                    </div>
+
+                    <button class="cta-button" onclick="switchTab('predict')">
+                        Predict Again
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Tab -->
+        <div class="tab-content" id="about-tab">
+            <div class="about-section">
+                <h2>About This System</h2>
+                
+                <div class="about-card">
+                    <h3>Technology</h3>
+                    <p><strong>Best Machine Learning Model:</strong> Ridge Regression</p>
+                    <p><strong>Framework:</strong> FastAPI + scikit-learn</p>
+                    <p><strong>Training Data:</strong> 1,337 real insurance records</p>
+                    <p><strong>Features:</strong> 13 engineered features from 6 inputs</p>
+                </div>
+
+                <div class="about-card">
+                    <h3>Performance</h3>
+                    <p><strong>R² Score:</strong> 0.8507 (85.07% accuracy)</p>
+                    <p><strong>RMSE:</strong> $4,509</p>
+                    <p><strong>MAE:</strong> $2,800</p>
+                    <p><strong>Response Time:</strong> &lt; 50ms</p>
+                </div>
+
+                <div class="about-card">
+                    <h3>Working</h3>
+                    <ol style="text-align: left; line-height: 1.8;">
+                        <li>Enter patient demographic and health information</li>
+                        <li>Our AI model analyzes 13 engineered features</li>
+                        <li>Predicts annual insurance cost with 95% confidence interval</li>
+                        <li>Identifies risk factors and provides recommendations</li>
+                        <li>Classifies risk level as Low, Medium, or High</li>
+                    </ol>
+                </div>
+
+                <div class="about-card">
+                    <h3>Key Features</h3>
+                    <div class="features-list">
+                        <span class="badge">Personalized Recommendations</span>
+                        <span class="badge">Real-time Predictions</span>
+                        <span class="badge">Confidence Intervals</span>
+                        <span class="badge">Risk Analysis</span>
+                        <span class="badge">Data Privacy</span>
+                    </div>
+                </div>
+
+                <div class="about-card">
+                    <h3>Disclaimer</h3>
+                    <p style="text-align: left; color: #666; font-size: 0.9rem; line-height: 1.6;">
+                        This tool is for educational and informational purposes only. 
+                        Predictions are based on historical data and should not be considered 
+                        as actual insurance quotes or medical advice. Always consult with 
+                        licensed insurance professionals and healthcare providers for 
+                        accurate information.
+                    </p>
+                </div>
+
+                <div class="about-card">
+                    <h3>Documentation</h3>
+                    <p>For developers interested in integrating this service:</p>
+                    <a href="/docs" target="_blank" class="cta-button" style="display: inline-block; margin-top: 1rem;">
+                        View API Documentation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
